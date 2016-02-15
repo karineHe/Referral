@@ -1,0 +1,6 @@
+<ul>
+  <p><span><%= user.username %></span>    -- <%= link_to "  Voir", user %></p>
+  <% user.godchildren.each do |godchild| %>
+    <%= render partial: "godchildren", locals: { user: godchild } %>
+  <% end %>
+</ul>

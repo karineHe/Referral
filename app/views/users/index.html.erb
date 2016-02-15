@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<div class="jumbotron">
+  <h2 class="page-header">Filtres</h2>
+  <%= render 'form_filters' %>
+</div></br></br>
+
+<span style="background-color: #FFCCCC"><%= @filter_notice %></span>
+
+<h1 class="page-header">Liste des Utilisateurs</h1>
+
+<%= link_to 'New User', new_user_path, class:"btn btn-primary active" %>
+</br></br>
+
+<div class="jumbotron">
+<table class="table-hover">
+  <thead>
+    <tr height="110" >
+      <th class="col-md-1">#</th>
+      <th class="col-md-1">Username</th>
+      <th class="col-md-1">Nom</th>
+      <th class="col-md-1">Prénom</th>
+      <th class="col-md-2"> Parrainé par </th>
+      <th class="col-md-2"> Parrain de </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr height="70">
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.lastname %></td>
+        <td><%= user.firstname %></td>
+        <td><%= user.godfather.username unless user.godfather.nil? %></td>
+        <td><% user.godchildren.each do |godchild| %>
+          <%= "#{godchild.username}, " %>
+        <% end %>
+        </td>
+        <td>
+          <div class="btn-group" role="group">
+            <%= link_to 'Voir en détails', user, class:"btn btn-default btn-sm" %>
+            <%= link_to 'Modifier', edit_user_path(user), class:"btn btn-default btn-sm" %>
+            <%= link_to 'Supprimer', user, class:"btn btn-default btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+

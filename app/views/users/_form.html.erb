@@ -1,0 +1,44 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+<% end %>
+
+  <div class="row">
+    <%= f.label :Username, class:"col-md-4" %>
+    <div class="col-md-6">
+      <%= f.text_field :username, class:"form-control" %>
+    </div>
+  </div></br>
+  <div class="row">
+    <%= f.label :Nom, class:"col-md-4" %>
+    <div class="col-md-6">
+      <%= f.text_field :lastname, class:"form-control" %>
+    </div>
+  </div></br>
+  <div class="row">
+    <%= f.label :Prénom, class:"col-md-4" %>
+    <div class="col-md-6">
+      <%= f.text_field :firstname, class:"form-control" %>
+    </div>
+  </div></br>
+  <div class="row">
+    <%= f.label :"Parrainage (Entrez un username)", class:"col-md-4" %>
+    <div class="col-md-6">
+      <%= f.text_field :godfather_username, class:"form-control" %>
+    </div>
+  </div></br>
+
+
+  <div class="actions">
+    <%= f.submit "Enregistrer", class:"btn tbn-primary active" %>
+    <%= link_to "Retour", users_path, class:"btn btn-primary active" %>
+  </div>
+<% end %>
